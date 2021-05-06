@@ -47,12 +47,15 @@ def main():
         REQUEST = requests.get(FINAL_URL.strip())
 
         if REQUEST.status_code == 200: 
-            print(f'{i}/' + '-> '+FINAL_URL+Fore.GREEN+' | CODE: 200 |\n'+Style.RESET_ALL)  
-            FILE.write(f'{i}/' + '-> | CODE: 200 |')
+            print(f'{i}/' + '-> '+FINAL_URL+Fore.GREEN+' | CODE: 200 |\n'+Style.RESET_ALL) 
+            if ALLOWED == 1:
+                FILE.write(f'{i}/' + '-> | CODE: 200 |')
+              
 
         if REQUEST.status_code == 403: 
             print(f'{i}/' + '-> '+FINAL_URL+Fore.RED+" | CODE : 403 |\n"+Style.RESET_ALL)
-            FILE.write(f'{i}/' + '-> | CODE 403 | ')
+            if ALLOWED == 1:
+                FILE.write(f'{i}/' + '-> | CODE 403 | ')
 
         if REQUEST.status_code == 404:
             print(f'{i}/' + '-> '+FINAL_URL+Fore.RED+" | CODE : 404 |\n"+Style.RESET_ALL)
