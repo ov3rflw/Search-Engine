@@ -1,63 +1,64 @@
 from colorama import init, Fore, Back, Style
-import requests 
+import requests
 
 init()
 
 def main():
+    RUN = 1
+    while(RUN):
+        try: 
 
-    i = 0
+            i = 0
 
-    print(''' 
-                 ██▀███   █    ██  ███▄    █  ███▄    █ ▓█████  ██▀███  ▒███████▒
-                ▓██ ▒ ██▒ ██  ▓██▒ ██ ▀█   █  ██ ▀█   █ ▓█   ▀ ▓██ ▒ ██▒▒ ▒ ▒ ▄▀░
-                ▓██ ░▄█ ▒▓██  ▒██░▓██  ▀█ ██▒▓██  ▀█ ██▒▒███   ▓██ ░▄█ ▒░ ▒ ▄▀▒░ 
-                ▒██▀▀█▄  ▓▓█  ░██░▓██▒  ▐▌██▒▓██▒  ▐▌██▒▒▓█  ▄ ▒██▀▀█▄    ▄▀▒   ░
-                ░██▓ ▒██▒▒▒█████▓ ▒██░   ▓██░▒██░   ▓██░░▒████▒░██▓ ▒██▒▒███████▒
-                ░ ▒▓ ░▒▓░░▒▓▒ ▒ ▒ ░ ▒░   ▒ ▒ ░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▒▓ ░▒▓░░▒▒ ▓░▒░▒
-                  ░▒ ░ ▒░░░▒░ ░ ░ ░ ░░   ░ ▒░░ ░░   ░ ▒░ ░ ░  ░  ░▒ ░ ▒░░░▒ ▒ ░ ▒
-            404 ░░   ░  ░░░ ░ ░    ░   ░ ░    ░   ░ ░    ░     ░░   ░ ░ ░ ░ ░ ░
-                ░        ░              ░          ░    ░  ░   ░       ░ ░    
-                                                        ░        
-    ''')
+            print(''' 
+                        ██▀███   █    ██  ███▄    █  ███▄    █ ▓█████  ██▀███  ▒███████▒
+                        ▓██ ▒ ██▒ ██  ▓██▒ ██ ▀█   █  ██ ▀█   █ ▓█   ▀ ▓██ ▒ ██▒▒ ▒ ▒ ▄▀░
+                        ▓██ ░▄█ ▒▓██  ▒██░▓██  ▀█ ██▒▓██  ▀█ ██▒▒███   ▓██ ░▄█ ▒░ ▒ ▄▀▒░ 
+                        ▒██▀▀█▄  ▓▓█  ░██░▓██▒  ▐▌██▒▓██▒  ▐▌██▒▒▓█  ▄ ▒██▀▀█▄    ▄▀▒   ░
+                        ░██▓ ▒██▒▒▒█████▓ ▒██░   ▓██░▒██░   ▓██░░▒████▒░██▓ ▒██▒▒███████▒
+                        ░ ▒▓ ░▒▓░░▒▓▒ ▒ ▒ ░ ▒░   ▒ ▒ ░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▒▓ ░▒▓░░▒▒ ▓░▒░▒
+                        ░▒ ░ ▒░░░▒░ ░ ░ ░ ░░   ░ ▒░░ ░░   ░ ▒░ ░ ░  ░  ░▒ ░ ▒░░░▒ ▒ ░ ▒
+                    404 ░░   ░  ░░░ ░ ░    ░   ░ ░    ░   ░ ░    ░     ░░   ░ ░ ░ ░ ░ ░
+                        ░        ░              ░          ░    ░  ░   ░       ░ ░    
+                                                                ░        
+            ''')
 
-    print('             [+]         Github: https://github.com/waitForTheQ           [+]\n\n\n')
+            print('             [+]         Github: https://github.com/waitForTheQ           [+]\n\n\n')
 
-    ALLOWED = 0
-    FILE = open('output.txt', 'w')
-    RESET = FILE.write('')
+            ALLOWED = 0
+            FILE = open('output.txt', 'w')
+            RESET = FILE.write('')
 
-    USER_URL = input('URL: ')
-    USER_PATH = input("Path of the wordlist : ")
-    USER_OUTPUT = input("Output ? (Y/N)").lower()
+            USER_URL = input('URL: ')
+            USER_PATH = input("Path of the wordlist : ")
+            USER_OUTPUT = input("Output ? (Y/N)").lower()
 
-    if not USER_PATH: 
-        PATH_WORDLIST = open('SecLists/Discovery/Web-Content/big.txt', 'r')
-    else:
-        PATH_WORDLIST = open(USER_PATH,'r')
+            if not USER_PATH: 
+                PATH_WORDLIST = open('SecLists/Discovery/Web-Content/big.txt', 'r')
+            else:
+                PATH_WORDLIST = open(USER_PATH,'r')
 
-    if USER_OUTPUT == 'y':
-        ALLOWED = 1
-    elif USER_OUTPUT == 'n':
-        pass
+            if USER_OUTPUT == 'y':
+                ALLOWED = 1
+            elif USER_OUTPUT == 'n':
+                pass
 
-        
-    for i in PATH_WORDLIST: 
+            for i in PATH_WORDLIST: 
 
-        FINAL_URL = USER_URL + f'{i}'
-        REQUEST = requests.get(FINAL_URL.strip())
+                FINAL_URL = USER_URL + f'{i}'
+                REQUEST = requests.get(FINAL_URL.strip())
 
-        if REQUEST.status_code == 200: 
-            print(f'{i}/' + '-> '+FINAL_URL+Fore.GREEN+' | CODE: 200 |\n'+Style.RESET_ALL) 
-            if ALLOWED == 1:
-                FILE.write(f'{i}/' + '-> | CODE: 200 |')
-              
+                if REQUEST.status_code == 200: 
+                    print(f'{i}/' + '-> '+FINAL_URL+Fore.GREEN+' | CODE: 200 |\n'+Style.RESET_ALL)  
+                    if ALLOWED == 1:
+                        FILE.write(f'{i}/' + '-> | CODE: 200 |')
 
-        if REQUEST.status_code == 403: 
-            print(f'{i}/' + '-> '+FINAL_URL+Fore.RED+" | CODE : 403 |\n"+Style.RESET_ALL)
-            if ALLOWED == 1:
-                FILE.write(f'{i}/' + '-> | CODE 403 | ')
+                if REQUEST.status_code == 403: 
+                    print(f'{i}/' + '-> '+FINAL_URL+Fore.RED+" | CODE : 403 |\n"+Style.RESET_ALL)
+                    FILE.write(f'{i}/' + '-> | CODE 403 | ')
 
-        if REQUEST.status_code == 404:
-            print(f'{i}/' + '-> '+FINAL_URL+Fore.RED+" | CODE : 404 |\n"+Style.RESET_ALL)
+        except KeyboardInterrupt:
+            print('\n\nBye bye')
+            RUN = 0
             
 main() 
