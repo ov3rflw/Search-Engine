@@ -23,7 +23,7 @@ def main():
                                                                 ░        
             ''')
 
-            print('             [+]         Github: https://github.com/waitForTheQ           [+]\n\n\n')
+            print('             [+]         Github: https://github.com/ov3rflw           [+]\n\n\n')
 
             ALLOWED = 0
             FILE = open('output.txt', 'w')
